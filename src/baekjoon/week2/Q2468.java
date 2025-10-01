@@ -11,7 +11,7 @@ public class Q2468 {
     static boolean[][] visited;
 
     static int n;
-    static int result = 1; // 아무 지역도 물에 잠기지 않을 경우
+    static int maxSafeZone = 1; // 아무 지역도 물에 잠기지 않을 경우
 
     // 상, 우 하, 좌
     static int[] dy = {-1, 0, 1, 0};
@@ -54,24 +54,24 @@ public class Q2468 {
             }
         }
 
-        for (int i = 1; i <= maxHeight; i++) {
+        for (int h = 1; h <= maxHeight; h++) {
             visited = new boolean[n][n];
             int cnt = 0;
 
-            for (int j = 0; j < n; j++) {
-                for (int k = 0; k < n; k++) {
+            for (int y = 0; y < n; y++) {
+                for (int x = 0; x < n; x++) {
 
-                    if (!visited[j][k] && arr[j][k] > i) {
-                        dfs(j, k, i);
+                    if (!visited[y][x] && arr[y][x] > h) {
+                        dfs(y, x, h);
                         cnt++;
                     }
                 }
             }
-            if (cnt > result) {
-                result = cnt;
+            if (cnt > maxSafeZone) {
+                maxSafeZone = cnt;
             }
         }
-        System.out.println(result);
+        System.out.println(maxSafeZone);
     }
 
 }
